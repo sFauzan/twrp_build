@@ -19,6 +19,14 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
 
+    - name: Install repo tool
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y curl python3
+        curl https://storage.googleapis.com/git-repo-downloads/repo > repo
+        chmod a+x repo
+        sudo mv repo /usr/local/bin/
+        
     - name: Install dependencies
       run: |
         sudo apt update
