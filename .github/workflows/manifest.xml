@@ -1,0 +1,11 @@
+<manifest>
+    <remote name="github" fetch="https://github.com/" />
+    <default revision="android-12.1" remote="github" sync-j="4" />
+
+    <!-- TWRP Source -->
+    <project path="bootable/recovery" name="TeamWin/android_bootable_recovery" revision="android-12.1" />
+
+    <!-- Device Tree -->
+    <project path="device/samsung/p205" name="sFauzan/twrp_device_samsung_p205" revision="main" />
+
+</manifest>
