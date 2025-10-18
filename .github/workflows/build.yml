@@ -22,14 +22,24 @@ jobs:
     - name: Install dependencies
       run: |
         sudo apt update
-        sudo apt install -y bc bison build-essential curl flex g++-multilib gcc-multilib \
-        git gnupg gperf imagemagick lib32ncurses5-dev lib32readline-dev lib32z1-dev \
-        liblz4-tool libncurses5-dev libsdl1.2-dev libssl-dev libxml2 libxml2-utils \
-        lzop openjdk-11-jdk pngcrush rsync schedtool squashfs-tools xsltproc zip zlib1g-dev ccache
+        mkdir -p ~/twrp
+        cd ~/twrp
+        repo init --depth=1 -u git://github.com/minimal-manifest-twrp/platform_manifest_twrp_omni.git -b twrp-9.0
 
     - name: Initialize repo
       run: |
-        mkdir -p ~/twrp
-        cd ~/twrp
-        repo init -u git://github.com/minimal-manifest-twrp/platform_manifest_twrp_omni.git -b twrp-9.0
-        rep
+        git clone https://github.com/topser9/twrp_device_samsung_p205 device/samsung/p205
+        sync
+        repo sync
+
+    - name: build
+      run: |
+        export ALLOW_MISSING_DEPENDENCIES=true
+        . build/envsetup.sh
+        lunch omni_p205-eng
+        mka recoveryimage
+
+    - name: see img
+      run: |
+        cd /out/target/product/p205
+        see recovery.img
