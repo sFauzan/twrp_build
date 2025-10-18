@@ -22,7 +22,7 @@ jobs:
     - name: Update and install dependencies
       run: |
         sudo apt-get update
-        sudo apt-get install -y git curl python3 openjdk-17-jdk bc ccache libncurses5 flex bison zip unzip rsync
+        sudo apt-get install -y git curl python3 openjdk-17-jdk bc ccache flex bison zip unzip rsync
 
     - name: Install repo tool
       run: |
